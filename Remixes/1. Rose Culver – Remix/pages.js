@@ -49,7 +49,7 @@ const state = {
   }
 };
 
-const updateSection = function(index) {
+const updateSection = function (index) {
   const pageContent = pages[index];
   outputTag.innerHTML = pageContent.copy;
   circleTag.style.backgroundColor = pageContent.circle;
@@ -57,7 +57,7 @@ const updateSection = function(index) {
 }
 
 // make a next function to increase the pageNumber
-const next = function() {
+const next = function () {
   // take the value from current state
   let { pageNumber } = state;
   pageNumber = pageNumber + 1;
@@ -69,7 +69,7 @@ const next = function() {
 }
 
 // make a previous function to decrease the pageNumber
-const previous = function() {
+const previous = function () {
   // take the value from current state
   let { pageNumber } = state;
   pageNumber = pageNumber - 1;
@@ -81,35 +81,35 @@ const previous = function() {
 }
 
 // pick a random slide
-const random = function() {
+const random = function () {
   // update the state
   state.pageNumber = Math.floor(Math.random() * pages.length);
 }
 
 // steup content at page load
-const setup = function() {
+const setup = function () {
   // update the state
   state.pageNumber = 0;
 }
 
 // on click of nextTag, run this
-nextTag.addEventListener('click', function() {
+nextTag.addEventListener('click', function () {
   next();
 })
 
 // on click of previousTag, run this
-previousTag.addEventListener('click', function() {
+previousTag.addEventListener('click', function () {
   previous();
 })
 
 // on click of previousTag, run this
-randomTag.addEventListener('click', function() {
+randomTag.addEventListener('click', function () {
   random();
 })
 
 // when a user presses a key, check for arrow left or right
 // and do next or prev correctly
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keyup', function (event) {
   // if the key being pressed is ArrowRight
   if (event.key === 'ArrowRight') {
     next();
@@ -122,6 +122,6 @@ document.addEventListener('keyup', function(event) {
 });
 
 // on page load, run this
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   setup();
 });
