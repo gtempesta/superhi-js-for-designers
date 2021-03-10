@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+    .flex-basis-400 {
+        flex: 0 0 400px;
+    }
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity:  1; }
+}
