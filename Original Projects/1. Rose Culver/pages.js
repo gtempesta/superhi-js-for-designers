@@ -1,3 +1,6 @@
+// this is the data for holding which page we're on
+let pageNumber = 0;
+
 // have the content for these pages
 const pages = [
   {
@@ -30,27 +33,8 @@ const outputTag = document.querySelector("h2");
 const circleTag = document.querySelector('section div.circle');
 const bodyTag = document.querySelector('body');
 
-// this variable will hold the count of the pages and respond to change
-const state = {
-  count: null,
-  update() {
-    // call external function
-    console.log(`update with pageNumber ${this.pageNumber}`);
-    updateSection(this.pageNumber);
-  },
-  get pageNumber() {
-    return this.count;
-  },
-  set pageNumber(pageNumber) {
-    console.log('state updated');
-    this.count = pageNumber;
-    // here we call a function whenever there's a change in the state
-    this.update();
-  }
-};
- 
-const updateSection = function (index)  {
-  const pageContent = pages[index];
+const updateSection = function () {
+  const pageContent = pages[pageNumber];
   outputTag.innerHTML = pageContent.copy;
   circleTag.style.backgroundColor = pageContent.circle;
   bodyTag.style.backgroundColor = pageContent.background;
@@ -58,38 +42,33 @@ const updateSection = function (index)  {
 
 // make a next function to increase the pageNumber
 const next = function () {
-  // take the value from current state
-  let { pageNumber } = state;
   pageNumber = pageNumber + 1;
   if (pageNumber > (pages.length - 1)) {
     pageNumber = 0;
   }
-  // update the state
-  state.pageNumber = pageNumber;
+  updateSection();
 };
 
 // make a previous function to decrease the pageNumber
 const previous = function () {
-  // take the value from current state
-  let { pageNumber } = state;
   pageNumber = pageNumber - 1;
   if (pageNumber < 0) {
     pageNumber = pages.length - 1;
   }
-  // update the state
-  state.pageNumber = pageNumber;
+  updateSection();
 };
 
 // pick a random slide
-const random = function() {
-  // update the state
-  state.pageNumber = Math.floor(Math.random() * pages.length);
-};
+const random = function () {
+  pageNumber = Math.floor(Math.random() * pages.length);
+
+  updateSection();
+}
 
 // steup content at page load
 const setup = function () {
-  // update the state
-  state.pageNumber = 0;
+  pageNumber = 0;
+  updateSection();
 };
 
 // on click of nextTag, run this
@@ -109,7 +88,8 @@ randomTag.addEventListener("click", function () {
 
 // when a user presses a key, check for arrow left or right
 // and do next or prev correctly
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keyup', function (event) {
+  console.log(event);
 
   // if the key being pressed is ArrowRight
   if (event.key === 'ArrowRight') {
@@ -123,6 +103,6 @@ document.addEventListener('keyup', function(event) {
 })
 
 // on page load, run this
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   setup();
 });
