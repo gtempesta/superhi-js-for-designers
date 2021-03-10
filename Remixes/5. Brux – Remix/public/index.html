@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,500;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/build/tailwind.css">
+  <title>Brux Project - Tailwind Version - Giorgio Tempesta</title>
+</head>
+<!-- 
+  Started from this project
+  https://github.com/tailwindlabs/tailwindcss-playground
+-->
+<body class="antialiased font-body text-lg font-light leading-normal bg-white text-dark-blue">
+<header class="fixed top-0 left-0 w-full flex flex-row justify-between items-center z-10 transition-colors duration-1000 h-16 pl-12 pr-12 bg-light-blue">
+  <h1 class="text-2xl font-black italic flex-1">Brux</h1>
+  <div class="face relative">
+    <img src="face-without-eyes.svg">
+    <div class="absolute iris iris-left top-iris-top left-first-iris-left">
+      <div class="relative top-0 left-0 w-iris-size h-iris-size bg-dark-blue rounded-iris transform -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+    <div class="absolute iris iris-right top-iris-top left-second-iris-left">
+      <div class="relative top-0 left-0 w-iris-size h-iris-size bg-dark-blue rounded-iris transform -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+  </div>
+<nav class="text-right flex-1">
+  <a class="ml-4" href="products.html">Products</a>
+  <a class="ml-4" href="how-it-works.html">How it works</a>
+  <a class="ml-4" href="results.html">Results</a>
+</nav>	
+</header>
+
+<section class="hero mt-16 py-40 px-12 bg-light-blue bg-hero bg-contain bg-no-repeat bg-right">
+	<h2 class="text-5xl font-medium leading-tight max-w-lg">
+   Keep your teeth healthy and happy
+  </h2>
+  <p class="my-6 max-w-lg">
+    With Brux Dental products, you can keep a smile that’s worth protecting, whatever you eat.
+  </p>
+  <a href="how-it-works.html" class="button inline-block bg-dark-blue text-white px-8 py-3 rounded-button">Read more</a>
+</section>
+
+<section class="content flex m-12 flex-row">
+  <div class="image">
+    	<img src="image1.jpg" srcset="image1.jpg, image1-2x.jpg 2x" />
+  </div>
+  <div class="content ml-12 flex-basis-400">
+    <h3 class="text-3xl font-medium leading-tight">
+      The world’s best toothpastes and mouthwashes
+    </h3>
+    <p class="my-6">
+      We work with some of the world’s leading dentists and dental scientists to provide you with the best products to care for your teeth and gums.
+    </p>
+  </div>
+</section>
+
+<section class="content flex m-12 flex-row-reverse">
+  <div class="image">
+    	<img src="image2.jpg" srcset="image2.jpg, image2-2x.jpg 2x" />
+  </div>
+  <div class="content mr-12 flex-basis-400">
+    <h3 class="text-3xl font-medium leading-tight">
+			Top protection against sugary effects
+    </h3>
+    <p class="my-6">
+      While it’s sensible to not go too overboard with your sugar intake, we know that you’re a real person too. Our products have been proven to neutralize sugar better than any leading-brand competitor.
+    </p>
+  </div>
+</section>
+<script src="header.js"></script>
+<script src="animation.js"></script>
+<script src="eyes.js"></script>
+
+</body>
+</html>
