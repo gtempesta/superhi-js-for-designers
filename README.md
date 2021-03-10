@@ -4,7 +4,13 @@ Here are the exercises I have done following the course "JavaScript for Designer
 
 ## 1. Rose Culver
 
-The project is a slider navigating different contents.\
+### Original
+https://rose-10.superhi.com/\
+The project is a slider navigating different contents.
+
+### Remix
+https://rose-culver-with-state.superhi.com/
+
 In the remix, instead of manually calling the updates to the UI, I have created a variable holding the state (the index at which the slideshow is in the current moment), which would trigger the same function every time its value changes. 
 
 So whenever the state is updated like this: 
