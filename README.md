@@ -1,3 +1,4 @@
+![SuperHi](image.png)
 # SuperHi – JavaScript for Designers
 
 Here are the exercises I have done following the course "JavaScript for Designers" in the SuperHi website. For each exercise I have also created a "remix" version. What I've done in those remixes was creating the same project but with some differences in the structure or implementation. 
@@ -6,7 +7,7 @@ Here are the exercises I have done following the course "JavaScript for Designer
 
 ### Original
 https://rose-10.superhi.com/\
-The project is a slider navigating different contents.
+The project is a slider navigating different contents, each with different colors and a different background.
 
 ### Remix
 https://rose-culver-with-state.superhi.com/
