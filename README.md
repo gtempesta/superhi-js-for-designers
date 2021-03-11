@@ -1,7 +1,7 @@
 ![SuperHi](image.png)
 # SuperHi – JavaScript for Designers
 
-Here are the exercises I have done following the course "JavaScript for Designers" in the SuperHi website. For each exercise I have also created a "remix" version. What I've done in those remixes was creating the same project but with some differences in the structure or implementation. 
+Here are the exercises I have done following the course ["JavaScript for Designers"](https://www.superhi.com/courses/javascript-for-designers) in the SuperHi website. For each exercise I have also created a "remix" version. What I've done in those remixes was creating the same project but with some differences in the structure or implementation. 
 
 ## 1. Rose Culver
 
