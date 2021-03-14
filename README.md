@@ -122,9 +122,9 @@ https://type-checker-with-state.superhi.com/
 
 In the remix I didn't want to update the UI directly from the listeners of the events in the page. Instead I wanted to update a centralized state, and to declare a set of rules that would update the UI based on that state.
 
-In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
+In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object. (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
 
-For example, a key up event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
+For example, a `keyup` event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
 
 ```js
 // when I type in my output tag, update the sentence tag accordingly
