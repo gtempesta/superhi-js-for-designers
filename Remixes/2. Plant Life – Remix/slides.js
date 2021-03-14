@@ -5,7 +5,6 @@ const images = slideArea.querySelectorAll("img");
 // we want to keep track of the current slide 
 let currentSlide = 0;
 
-// todo this function was not present in the original, so it should be explained
 function snapRandomToGrid(startValue, snapAmount, extension) {
     const randomMultiplier = (extension / snapAmount) + 1;
     return snapAmount * (Math.floor(Math.random() * randomMultiplier)) + startValue;
