@@ -106,6 +106,66 @@ const valuesExtension = 100;
 
 const x = snapRandomToGrid(startingPoint, snapAmount, valuesExtension);
 ```
-`startingPoint` represents the lowest value, that we want the function to output, `snapAmount` is the distance between the possible output values, and `valuesExtension` is the distance from the lowest value to the highest. 
+`startingPoint` represents the lowest value that we want the function to output, `snapAmount` is the distance between the possible output values, and `valuesExtension` is the distance from the lowest value to the highest. 
 
 So in this case the function will output values from -50 to 50, with a distance of 25 one from the other. 
+
+## 3. Type Checker
+
+### Original
+https://type-checker-project.superhi.com/
+
+In this project we use different kinds of inputs to update the appearance of a custom text.
+
+### Remix
+https://type-checker-with-state.superhi.com/
+
+In the remix I didn't want to update the UI directly from the listeners of the events in the page. Instead I wanted to update a centralized state, and to declare a set of rules that would update the UI based on that state.
+
+In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
+
+For example, a key up event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
+
+```js
+// when I type in my output tag, update the sentence tag accordingly
+outputTag.addEventListener('keyup', function () {
+  // update renderedText
+  stateProxy.renderedText = this.value;
+});
+```
+This would call the `set` function in the `stateHandler` of the `stateProxy`.
+
+This function would update the state in the original `state` variable, and call a different method based on the property that was updated: 
+
+```js
+set: function (obj, prop, value) {
+  console.log(`${prop} changed from ${obj[prop]} to ${value}`);
+  // set property on state
+  obj[prop] = value;
+  // call a different method based on the property that changed
+  const method = {
+    renderedText: 'updateRenderedText',
+    fontSize: 'updateFontSize',
+    lineHeight: 'updateLineHeight',
+    fontFamily: 'updateFontFamily',
+    fontStyle: 'updateFontStyle',
+    fontWeight: 'updateFontWeight',
+    colorPairing: 'updateColorPairing',
+  }[prop];
+
+  if (method) {
+    // only call the method if it exists
+    this[method](value);
+  }
+},
+```
+
+So in the case of the `renderedText` property, a function called `updateRenderedText` would be called:
+```js
+updateRenderedText(text) {
+  // update text in text input and textarea
+  outputTag.value = text;
+  sentenceTag.value = text;
+},
+```
+This resulted in a longer code, but maybe if the application grew it could help me manage the state in a cleaner way.

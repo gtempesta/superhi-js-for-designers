@@ -95,6 +95,7 @@ const stateHandler = {
         }[prop];
 
         if (method) {
+            // only call the method if it exists
             this[method](value);
         }
     },
