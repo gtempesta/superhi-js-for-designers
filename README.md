@@ -6,7 +6,8 @@ Here are the exercises I have done following the course ["JavaScript for Designe
 ## 1. Rose Culver
 
 ### Original
-https://rose-10.superhi.com/\
+https://rose-10.superhi.com/
+
 The project is a slider navigating different contents, each with different colors and a different background.
 
 ### Remix
@@ -42,3 +43,69 @@ set pageNumber(pageNumber) {
   this.update();
 }
 ```
+## 2. Plant Life
+
+### Original
+https://plant-project.superhi.com/
+
+This project is a different take on the slideshow, in which images are shown by updating their z-index, and the other images are shown when hovering on the slideshow, with animations that are computed with random numbers. 
+
+### Remix
+https://plant-project-updated.superhi.com/
+
+Instead of starting all images with a value of zero for the z-index and incrementing it by one at each click, I've tried to compute a set of z-indexes that could be exchanged between the images, so that the value would never exceed a threshold limit. 
+
+To avoid going below zero with indexes I've started with an index that's the double of the lenght of the slides. 
+
+```js
+images.forEach((image, index) => {
+  // an array of 5 images will generate
+  // indexes of 10, 9, 8, 7, 6
+  const zIndexImage = (images.length * 2) - index;
+  image.style.zIndex = zIndexImage;
+});
+```
+
+At every new click, all indexes would be decreased by one, while the clicked image would get the maximum index, which is the double of the length of the original array.
+
+```js
+images.forEach(image => {
+  // subtract one to current z-index
+  const newIndex = parseInt(image.style.zIndex, 10) - 1;
+  image.style.zIndex = newIndex;
+});
+
+// start with images.length * 2 so we never go negative
+const zIndex = images.length * 2;
+// pick the right image
+images[currentSlide].style.zIndex = zIndex;
+```
+
+I'm not sure that going with the double of the length of the original array was the best option, but I couldn't come up with a better idea.
+
+Another addition that I've made was a function to compute the amount of random translation along the x and y axis for the slides. 
+The values that are generated will be the same as in the original code, but encapsulating the functionality helped me better understand it and make the code re-usable in the future. 
+
+```js
+function snapRandomToGrid(startValue, snapAmount, extension) {
+  const randomMultiplier = (extension / snapAmount) + 1;
+  return snapAmount * (Math.floor(Math.random() * randomMultiplier)) + startValue;
+}
+```
+
+So instead of writing:
+```js
+const x = 25 * (Math.floor(Math.random() * 5)) - 50;
+```
+
+I could go with:
+```js
+const startingPoint = -50;
+const snapAmount = 25;
+const valuesExtension = 100;
+
+const x = snapRandomToGrid(startingPoint, snapAmount, valuesExtension);
+```
+`startingPoint` represents the lowest value, that we want the function to output, `snapAmount` is the distance between the possible output values, and `valuesExtension` is the distance from the lowest value to the highest. 
+
+So in this case the function will output values from -50 to 50, with a distance of 25 one from the other. 
