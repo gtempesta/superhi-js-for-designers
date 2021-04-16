@@ -183,3 +183,17 @@ https://jenna-buchholz-updated.superhi.com/
 What I tried to do in the remix was to remove data from the markup and take it from a JavaScript array (simulating what can arrive from request to a back-end server or from an API). This has been done for the progject's name, page number and the presence of a dark background. 
 
 I wasn't able to do this for the parallax amount of the elements because they don't have the same position in the markup in all the sections.
+
+## 5. Brux
+
+### Original
+https://brux-project-1.superhi.com/
+
+The project shows a fictional e-commerce for dental products, in which contents fade based on the scroll, and in which the eyes in an icon animate based on the mouse position.
+
+### Remix
+https://brux-tailwind-project.superhi.com/
+
+For this remix I wanted to experiment with Tailwind. I used the code in the project https://github.com/tailwindlabs/tailwindcss-playground as a starting point. Most of the styles where already present so I mostly added existing styles to the markup, but I've added some customizations in the `tailwind.css` and in the `tailwind.config.js` files.
+
+I have mostly kept the same code for JavaScript, but on the scroll event listener I have swapped a `bg-white` class with a `bg-light-blue` class, so I didn't have to add some custom style for the `scrolled` class. 
