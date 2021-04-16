@@ -197,3 +197,71 @@ https://brux-tailwind-project.superhi.com/
 For this remix I wanted to experiment with Tailwind. I used the code in the project https://github.com/tailwindlabs/tailwindcss-playground as a starting point. Most of the styles where already present so I mostly added existing styles to the markup, but I've added some customizations in the `tailwind.css` and in the `tailwind.config.js` files.
 
 I have mostly kept the same code for JavaScript, but on the scroll event listener I have swapped a `bg-white` class with a `bg-light-blue` class, so I didn't have to add some custom style for the `scrolled` class. 
+
+## 6. Words of Womxn
+
+### Original
+https://words-womxn-project.superhi.com/
+
+The project displays quotes from different women, in which text and images animate based on the scroll position.
+
+### Remix
+https://words-womxn-react.superhi.com/
+
+In this project I have ported the code to React, starting from the Create React App project (https://github.com/facebook/create-react-app). I have created a component for the Header, one for the Sections and another for the Stamps. All the data were declared in the App component and passed down as props to the components that displayed them. 
+
+To manage the state of each component I have used some hooks: `useState`, `useEffect` and `useRef`. 
+
+For example, the scrolling behavior is computed by adding a listener in each section, using the `useEffect` hook. 
+
+```javascript
+useEffect(() => {
+  // add event listener
+  window.addEventListener("scroll", addMovement);
+  // remove event listener
+  return () => window.removeEventListener("scroll", addMovement);
+});
+```
+
+The `addMovement` function updates the `distance` variable which is shared in the component using the `useState` hook. 
+
+```javascript
+const [distance, setDistance] = useState(0);
+const addMovement = () => {
+  // compute variables
+  const topViewport = window.pageYOffset;
+  const midViewport = topViewport + (window.innerHeight / 2);
+  // take the value from the DOM element
+  const { offsetTop, offsetHeight } = sectionRef.current;
+  const topSection = offsetTop;
+  const midSection = topSection + (offsetHeight / 2);
+  const distanceToSection = midViewport - midSection;
+  // ...
+  // update shared variable (distance)
+  setDistance(distanceToSection);
+};
+```
+
+And the `distance` variable is then used to compute the different styles: 
+
+```javascript
+// compute variables based on reactive variable (distance)
+let rotation = distance / 100;
+// index is a prop passed by App
+if (index % 2 === 1) {
+  rotation = rotation * -1;
+}
+const contentDist = -1 * distance / 2;
+const contentRotation = -1 * rotation;
+// style for the image
+const imageStyle = {
+  transform: `rotate(${rotation}deg)`,
+};
+// style for the content
+const contentStyle = {
+  top: `${contentDist}px`,
+  transform: `rotate(${contentRotation}deg)`
+};
+```
+
+About the project in the editor: the default settings of Create React App put the assets in different folders, so I had to manually update paths in order to make the project work in the SuperHi editor, but in the end it worked 😅
