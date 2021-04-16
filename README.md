@@ -169,3 +169,17 @@ updateRenderedText(text) {
 },
 ```
 This resulted in a longer code, but maybe if the application grew it could help me manage the state in a cleaner way.
+
+## 4. Jenna Buchholz
+
+### Original
+https://jenna-buchholz-project.superhi.com/
+
+This project is a portfolio in which text contents and colors are updated based on the images that are currently visible in the viewport. We can also see the amount of scrolling in a progress bar, and some custom elements are animated using a parallax. 
+
+### Remix
+https://jenna-buchholz-updated.superhi.com/
+
+What I tried to do in the remix was to remove data from the markup and take it from a JavaScript array (simulating what can arrive from request to a back-end server or from an API). This has been done for the progject's name, page number and the presence of a dark background. 
+
+I wasn't able to do this for the parallax amount of the elements because they don't have the same position in the markup in all the sections.
