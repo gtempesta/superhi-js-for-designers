@@ -180,9 +180,9 @@ This project is a portfolio in which text contents and colors are updated based 
 ### Remix
 https://jenna-buchholz-updated.superhi.com/
 
-What I tried to do in the remix was to remove data from the markup and take it from a JavaScript array (simulating what can arrive from request to a back-end server or from an API). This has been done for the progject's name, page number and the presence of a dark background. 
+What I tried to do in the remix was to remove data from the markup and take it from a JavaScript array (simulating a response from a back-end server or from an API). This has been done for the name of the project, for the page number and for the presence of a dark background. 
 
-I wasn't able to do this for the parallax amount of the elements because they don't have the same position in the markup in all the sections.
+I wasn't able to do this for the parallax amount of the elements though, partly because they don't have the same position in the markup in all the sections.
 
 ## 5. Brux
 
@@ -196,7 +196,7 @@ https://brux-tailwind-project.superhi.com/
 
 For this remix I wanted to experiment with Tailwind. I used the code in the project https://github.com/tailwindlabs/tailwindcss-playground as a starting point. Most of the styles where already present so I mostly added existing styles to the markup, but I've added some customizations in the `tailwind.css` and in the `tailwind.config.js` files.
 
-I have mostly kept the same code for JavaScript, but on the scroll event listener I have swapped a `bg-white` class with a `bg-light-blue` class, so I didn't have to add some custom style for the `scrolled` class. 
+I have mostly kept the same code for JavaScript, but on the scroll event listener instead of adding a `scrolled` class I have swapped a `bg-white` class with a `bg-light-blue` class, so I didn't have to add some custom style.  
 
 ## 6. Words of Womxn
 
