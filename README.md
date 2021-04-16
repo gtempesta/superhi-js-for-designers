@@ -30,7 +30,7 @@ const updateSection = function (index) {
   bodyTag.style.backgroundColor = pageContent.background;
 }
 ```
-This was a primitive version of the modern frameworks, in which the UI responds to the changes in the state, and was implemented using `getters` and `setters`.
+This was inspired by the modern frameworks, in which the UI responds to the changes in the state, and was implemented using `getters` and `setters`.
 
 ```js
 get pageNumber() {
