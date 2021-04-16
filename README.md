@@ -122,9 +122,9 @@ https://type-checker-with-state.superhi.com/
 
 In the remix I didn't want to update the UI directly from the listeners of the events in the page. Instead I wanted to update a centralized state, and to declare a set of rules that would update the UI based on that state.
 
-In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
+In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object. (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
 
-For example, a key up event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
+For example, a `keyup` event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
 
 ```js
 // when I type in my output tag, update the sentence tag accordingly
@@ -169,3 +169,99 @@ updateRenderedText(text) {
 },
 ```
 This resulted in a longer code, but maybe if the application grew it could help me manage the state in a cleaner way.
+
+## 4. Jenna Buchholz
+
+### Original
+https://jenna-buchholz-project.superhi.com/
+
+This project is a portfolio in which text contents and colors are updated based on the images that are currently visible in the viewport. We can also see the amount of scrolling in a progress bar, and some custom elements are animated using a parallax. 
+
+### Remix
+https://jenna-buchholz-updated.superhi.com/
+
+What I tried to do in the remix was to remove data from the markup and take it from a JavaScript array (simulating what can arrive from request to a back-end server or from an API). This has been done for the progject's name, page number and the presence of a dark background. 
+
+I wasn't able to do this for the parallax amount of the elements because they don't have the same position in the markup in all the sections.
+
+## 5. Brux
+
+### Original
+https://brux-project-1.superhi.com/
+
+The project shows a fictional e-commerce for dental products, in which contents fade based on the scroll, and in which the eyes in an icon animate based on the mouse position.
+
+### Remix
+https://brux-tailwind-project.superhi.com/
+
+For this remix I wanted to experiment with Tailwind. I used the code in the project https://github.com/tailwindlabs/tailwindcss-playground as a starting point. Most of the styles where already present so I mostly added existing styles to the markup, but I've added some customizations in the `tailwind.css` and in the `tailwind.config.js` files.
+
+I have mostly kept the same code for JavaScript, but on the scroll event listener I have swapped a `bg-white` class with a `bg-light-blue` class, so I didn't have to add some custom style for the `scrolled` class. 
+
+## 6. Words of Womxn
+
+### Original
+https://words-womxn-project.superhi.com/
+
+The project displays quotes from different women, in which text and images animate based on the scroll position.
+
+### Remix
+https://words-womxn-react.superhi.com/
+
+In this project I have ported the code to React, starting from the Create React App project (https://github.com/facebook/create-react-app). I have created a component for the Header, one for the Sections and another for the Stamps. All the data were declared in the App component and passed down as props to the components that displayed them. 
+
+To manage the state of each component I have used some hooks: `useState`, `useEffect` and `useRef`. 
+
+For example, the scrolling behavior is computed by adding a listener in each section, using the `useEffect` hook. 
+
+```javascript
+useEffect(() => {
+  // add event listener
+  window.addEventListener("scroll", addMovement);
+  // remove event listener
+  return () => window.removeEventListener("scroll", addMovement);
+});
+```
+
+The `addMovement` function updates the `distance` variable which is shared in the component using the `useState` hook. 
+
+```javascript
+const [distance, setDistance] = useState(0);
+const addMovement = () => {
+  // compute variables
+  const topViewport = window.pageYOffset;
+  const midViewport = topViewport + (window.innerHeight / 2);
+  // take the value from the DOM element
+  const { offsetTop, offsetHeight } = sectionRef.current;
+  const topSection = offsetTop;
+  const midSection = topSection + (offsetHeight / 2);
+  const distanceToSection = midViewport - midSection;
+  // ...
+  // update shared variable (distance)
+  setDistance(distanceToSection);
+};
+```
+
+And the `distance` variable is then used to compute the different styles: 
+
+```javascript
+// compute variables based on reactive variable (distance)
+let rotation = distance / 100;
+// index is a prop passed by App
+if (index % 2 === 1) {
+  rotation = rotation * -1;
+}
+const contentDist = -1 * distance / 2;
+const contentRotation = -1 * rotation;
+// style for the image
+const imageStyle = {
+  transform: `rotate(${rotation}deg)`,
+};
+// style for the content
+const contentStyle = {
+  top: `${contentDist}px`,
+  transform: `rotate(${contentRotation}deg)`
+};
+```
+
+About the project in the editor: the default settings of Create React App put the assets in different folders, so I had to manually update paths in order to make the project work in the SuperHi editor, but in the end it worked 😅
