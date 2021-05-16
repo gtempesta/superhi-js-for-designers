@@ -108,7 +108,7 @@ const x = snapRandomToGrid(startingPoint, snapAmount, valuesExtension);
 ```
 `startingPoint` represents the lowest value that we want the function to output, `snapAmount` is the distance between the possible output values, and `valuesExtension` is the distance from the lowest value to the highest. 
 
-So in this case the function will output values from -50 to 50, with a distance of 25 one from the other. 
+So in this case the function will output values from -50 to 50, with a distance of 25 one from the other. The possible output values will be: -50, -25, 0, 25 and 50.
 
 ## 3. Type Checker
 
@@ -124,7 +124,7 @@ In the remix I didn't want to update the UI directly from the listeners of the e
 
 In order to manage this I have created a Proxy object, which connects a state to a state handler, which responds to the changes in the proxy object. (This was inspired by this article: https://dev.to/mandrewdarts/vanilla-change-detection-with-proxies-in-javascript-3kpe).
 
-For example, a `keyup` event was not updating directly the text in the textarea: instead it only changed a property in the Proxy called `stateProxy`.
+For example, a `keyup` event was not updating directly the text in the textarea: instead it only changed a property in the Proxy variable called `stateProxy`.
 
 ```js
 // when I type in my output tag, update the sentence tag accordingly
